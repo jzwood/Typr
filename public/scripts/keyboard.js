@@ -6,10 +6,9 @@ window.onload = function(){
   }
   var buffer = "                                       ";
   var test = buffer + "A duck made her nest under some leaves. She sat on the eggs to keep them warm."
-  // window.textContent = buffer + myth["THE UGLY DUCKLING"];
-  // results.forEach(function(r) {
-  //   window.textContent = buffer + r.story_text;
-  // });
+
+  window.textContent = window.textContent || "Still didn't work.";//buffer + r.story_text;
+
   var textContent = window.textContent;
   window.cursorPos = 0;
   var stream = document.getElementById("textArea");

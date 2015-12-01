@@ -15,11 +15,12 @@
     <div id="textArea">
     </div>
   </div>
-  <script>
+  <%
+  console.log("anything?");
   results.forEach(function(r) {
-    window.textContent = buffer + r.story_text;
+    window.textContent = r.story_text;
   });
-  </script>
+  %>
 </body>
 </html>
 
