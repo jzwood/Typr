@@ -29,7 +29,7 @@ app.get('/books', function (request, response) {
 
 app.get('/:story_id', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM story_database WHERE id = ' + request.params.story_id, function(err, result) {
+    client.query('SELECT * FROM story_database WHERE story_id = ' + request.params.story_id, function(err, result) {
       done();
       if (err)
        { console.error(err); response.send("Error " + err); }
