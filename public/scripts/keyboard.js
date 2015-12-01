@@ -7,7 +7,7 @@ window.onload = function(){
   var buffer = "                                       ";
   var test = buffer + "A duck made her nest under some leaves. She sat on the eggs to keep them warm."
 
-  window.textContent = document.getElementById("textcontent").children[0].textContent || buffer + "Internal Server Error";//buffer + r.story_text;
+  window.textContent = buffer + document.getElementById("textcontent").children[0].textContent;//buffer + r.story_text;
 
   var textContent = window.textContent;
   window.cursorPos = 0;
@@ -19,7 +19,6 @@ window.onload = function(){
 function enableSmartInput(textElement,story){
   document.body.onkeypress = function(evnt){
     var code = evnt.keyCode;
-    drawKeyStroke(code);
     if(story.charCodeAt(window.cursorPos+39) === code){
       var wcp = ++window.cursorPos;
       formatContent(textElement,story,wcp);
