@@ -7,7 +7,7 @@ window.onload = function(){
   var buffer = "                                       ";
   var test = buffer + "A duck made her nest under some leaves. She sat on the eggs to keep them warm."
 
-  window.textContent = window.textContent || "Still didn't work.";//buffer + r.story_text;
+  window.textContent = document.getElementById("textcontent").children[0].textContent || buffer + "Internal Server Error";//buffer + r.story_text;
 
   var textContent = window.textContent;
   window.cursorPos = 0;
@@ -28,18 +28,9 @@ function enableSmartInput(textElement,story){
   }
 }
 
-function drawKeyStroke(key){
-  var rect = document.getElementById('white').getBoundingClientRect();
-}
-
 function updateProgress(story, cp){
   var wordcount = story.match(/\S+/g).length;
   var wordsTyped = story.slice(0,cp+39).match(/\S+/g) ? story.slice(0,cp+39).match(/\S+/g).length : 0;
-  // var percentCompleted = (wordsTyped/wordcount*100);
-  // document.getElementById('completed').innerHTML = percentCompleted.toFixed(0) + "% Completed!";
-  // if(percentCompleted.toFixed(0) === '100' &&  cp+39 !== story.length){
-  //   document.getElementById('completed').innerHTML=99+ "% Completed!";
-  // }
   var wordsLeft = story.slice(cp+39,story.length).match(/\S+/g) ? story.slice(cp+39,story.length).match(/\S+/g).length : 0;
   document.getElementById("to-go").innerHTML = wordsTyped + " words typed. " + wordsLeft + " to go."
 }
