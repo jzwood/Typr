@@ -14,6 +14,11 @@
   <div id="typeBox">
     <div id="textArea">
     </div>
+    <ul>
+        <% results.forEach(function(r) { %>
+            <li><%= r.story_text %></li>
+        <% }); %>
+    </ul>
   </div>
 </body>
 </html>
