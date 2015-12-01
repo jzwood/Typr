@@ -2,6 +2,7 @@
 <html>
 <head>
   <link href="/stylesheets/style2.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="/scripts/keyboard.js"></script>
 </head>
 <body>
   <table id="banner"><tr>
@@ -13,6 +14,16 @@
   <div id="typeBox">
     <div id="textArea">
     </div>
+    <div id="textcontent">
+        <% results.forEach(function(r) { %>
+            <p><%= r.story_text %></p>
+        <% }); %>
+    </div>
   </div>
 </body>
 </html>
+
+<!-- git add .
+git commit -m "dis ambiguating file names"
+git push typr-heroku master
+heroku open -->

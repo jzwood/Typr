@@ -10,7 +10,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/index/');
+  response.render('pages/index');
 });
 
 var pg = require('pg');
@@ -34,7 +34,7 @@ app.get('books/:table_id', function (request, response) {
       if (err)
        { console.error(err); response.send("Error " + err); }
       else
-       { response.render('pages/index', {results: result.rows} ); }
+       { response.render('pages/typr', {results: result.rows} ); }
     });
   });
 });
