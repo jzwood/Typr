@@ -27,7 +27,7 @@ app.get('/books', function (request, response) {
   });
 });
 
-app.get('/:table_id', function (request, response) {
+app.get('books/:table_id', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM tale_database WHERE story_id = ' + request.params.table_id, function(err, result) {
       done();
