@@ -34,7 +34,7 @@ app.get('/:story_id', function (request, response) {
       if (err)
        { console.error(err); response.send("Error " + err); }
       else
-       { response.render('pages/books', {results: result.rows} ); }
+       { response.render('pages/index', {results: result.rows} ); }
     });
   });
 });
