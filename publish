@@ -1,5 +1,9 @@
 #! /bin/bash
+echo git add .
 git add .
+echo git commit -m "$1"
 git commit -m "$1"
+echo git push typr-heroku master
 git push typr-heroku master
+echo heroku open
 heroku open
