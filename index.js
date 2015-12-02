@@ -27,6 +27,18 @@ app.get('/books', function (request, response) {
   });
 });
 
+// app.get('/books/:table_id', function (request, response) {
+//   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+//     client.query('SELECT * FROM tale_database WHERE story_id = ' + request.params.table_id, function(err, result) {
+//       done();
+//       if (err)
+//        { console.error(err); response.send("Error " + err); }
+//       else
+//        { response.render('pages/typr', {results: result.rows} ); }
+//     });
+//   });
+// });
+
 app.get('/books/:table_id', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     client.query('SELECT * FROM tale_database WHERE story_id = ' + request.params.table_id, function(err, result) {
@@ -34,7 +46,7 @@ app.get('/books/:table_id', function (request, response) {
       if (err)
        { console.error(err); response.send("Error " + err); }
       else
-       { response.render('pages/typr', {results: result.rows} ); }
+       { response.send({results: result.rows})
     });
   });
 });
