@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="/stylesheets/style2.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <table id="banner"><tr>
-    <td class="menu" style="background-color:rgb(255, 212, 241)">About TYPR</td>
-    <td class="menu" style="background-color:rgb(60, 160, 89)" onClick="location.href='books'">Stories</td>
-    <td class="menu" style="background-color:rgb(200, 103, 172)">Stats</td>
-    <td class="menu" id="to-go" style="background-color:rgb(189, 109, 255)">Progress Bar</td>
-  </tr></table>
+  <div id="banner">
+    <div class="menu" style="background-color:rgb(255, 212, 241)">About TYPR</div>
+    <div class="menu" style="background-color:rgb(234, 133, 172)" onClick="location.href='books'">Stories</div>
+    <div class="menu" style="background-color:rgb(200, 103, 172)">Stats</div>
+</div>
   <div id="typeBox">
-    <div id="textArea">
-    </div>
+    <div id="textArea"></div>
+    <progress id="progress" value="0" max="1">Progress Bar</progress>
+    <p id="stats">words left</p>
   </div>
+  <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+  <script type="text/javascript" src="/scripts/keyboard.js"></script>
 </body>
 </html>
