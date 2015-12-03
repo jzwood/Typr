@@ -6,7 +6,7 @@ window.onload = function(){
     console.log('clicked id: ', id)
     $.get( "/api/tales/id/" + id, function( data ) {
       console.log(data);
-      var textContent = buffer +  data["text_content"];
+      var textContent = buffer +  data[0]["text_content"];
       // window.var2 = JSON.parse(data);
       var stream = document.getElementById("textArea");
       formatContent(stream,textContent,cursorPos,adjustedCursorIndex,maxCharNum);
@@ -23,13 +23,13 @@ window.onload = function(){
   var buffer = (function(){var buf = '';for(var i=0; i< adjustedCursorIndex; i++){ buf+= ' '; } return buf})();
 
   // initialize first story
-  $.get( "/api/tales/id/565f964447e3f6fd05b68d79", function( data ) {
-    var textContent = buffer +  data["text_content"];
+  $.get("/api/tales/id/7", function(data){
+    var textContent = buffer +  data[0]["text_content"];
     // window.var2 = JSON.parse(data);
     var stream = document.getElementById("textArea");
     formatContent(stream,textContent,cursorPos,adjustedCursorIndex,maxCharNum);
     enableSmartInput(stream,textContent,cursorPos,adjustedCursorIndex,maxCharNum,keyData,mostRecentMiss);
-    console.log(data);
+    //console.log(data);
   });
 }
 

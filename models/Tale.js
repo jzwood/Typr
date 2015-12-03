@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var TaleSchema = new Schema({
+var taleSchema = new Schema({
+	_id : Number,
 	title: String,
   author: String,
   text: String,
@@ -12,4 +13,4 @@ var TaleSchema = new Schema({
   book: String
 });
 
-module.exports = mongoose.model('Tale', TaleSchema);
+module.exports = mongoose.model('Tale', taleSchema);
