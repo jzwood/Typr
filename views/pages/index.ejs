@@ -5,7 +5,7 @@
 </head>
 <body>
   <div id="banner">
-    <div class="menu" style="background-color:rgb(255, 212, 241)">About TYPR</div>
+    <div class="menu" style="background-color:rgb(255, 212, 241)">How to use TYPR</div>
     <div class="menu" style="background-color:rgb(234, 133, 172)" onClick="location.href='books'">Stories</div>
     <div class="menu" style="background-color:rgb(200, 103, 172)">Stats</div>
 </div>
@@ -13,6 +13,14 @@
     <div id="textArea"></div>
     <progress id="progress" value="0" max="1">Progress Bar</progress>
     <p id="stats">words left</p>
+  <div class="container">
+  <h2>Choose a Story</h2>
+  <ul>
+      <% results.forEach(function(r) { %>
+          <li class='title-picker' data-id="<%= r._id %>"><%= r.title %></li>
+      <% }); %>
+  </ul>
+  </div>
   </div>
   <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
   <script type="text/javascript" src="/scripts/keyboard.js"></script>

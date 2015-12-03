@@ -27,9 +27,24 @@ app.set('view engine', 'ejs');
 app.get('/books', renderAllTales);
 
 app.get('/api/tales', getAllTales);
+app.get('/api/tales/id/:id', getTaleById);
+app.get('/api/tales/title/:title', getTaleByTitle);
+
+
 
 app.get('/', function(req, res) {
-  res.render('pages/index');
+  Tale
+  .find()
+  .exec((err, doc) => {
+    console.log(doc)
+    if (err) {
+      res.status(500).json({status:'error', message: err});
+    } else {
+      res.render('pages/index', { results: doc } );
+    }
+});
+
+  // res.render('pages/index');
 });
 
 // var pg = require('pg');
@@ -73,10 +88,35 @@ function getAllTales(req, res, next) {
     if (err) {
       res.status(500).json({status:'error', message: err});
     } else {
+      doc ? res.json(doc) : res.status(404).json({status:'error', message: 'no documents! :(' });
+    }
+  });
+}
+
+function getTaleById(req, res, next) {
+  Tale
+  .findOne({ _id: req.params.id })
+  .exec((err,doc) => {
+    if (err) {
+      res.status(500).json({status:'error', message: err});
+    } else {
+      doc ? res.json(doc) : res.status(404).json({status:'error', message: 'Document not found' });
+    }
+  });
+}
+
+function getTaleByTitle(req, res, next) {
+  Tale
+  .findOne({ title: req.params.title })
+  .exec((err,doc) => {
+    if (err) {
+      res.status(500).json({status:'error', message: err});
+    } else {
       res.json(doc);
     }
   });
 }
+
 
 function renderAllTales(req, res, next) {
   Tale
