@@ -8,11 +8,14 @@
 */
 
 /* These styles assume you are using ul and li */
+
+#help{
+  text-align:left;
+  color: gray;
+}
 .title-picker{
     text-align: left;
-    padding-left: 25px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    border-radius: 15px;
     padding-right: 25px;
 }
 .dropit {
@@ -29,8 +32,10 @@
   display: none;
   min-width: 150px;
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding-left: 25px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   background-color: white;
   border-style: solid;
   border-width: medium;

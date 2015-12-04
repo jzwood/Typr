@@ -45,10 +45,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 #graph-menu{
   width:8%;
+  min-width: 50px;
 }
 body {
   /*font-family: 'Special Elite', monospace;*/
-  font-size: 22pt;
+  font-size: 26pt;
   font-family: monospace;
   position:fixed;
   top:0px;
@@ -78,13 +79,13 @@ body {
 .title-picker{
   color: gray;
   background-color: white;
-  -webkit-transition: background-color 1s; /* Safari */
-  transition: background-color 1s;
+  -webkit-transition: background-color 1.6s; /* Safari */
+  transition: background-color 1.6s;
 }
 
 .title-picker:hover{
   color: rgb(60, 0, 0);
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.2);
 }
 
 #progress{
