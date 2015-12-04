@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var tales = require('../../data/tales');
+var tales = require('../data/tales');
 
 router.get('/', renderAllTales);
 

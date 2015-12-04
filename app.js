@@ -20,10 +20,9 @@ app.set('view engine', 'ejs');
 
 app.use('/api/tales', require('./routes/api/tales'));
 app.use('/api/books', require('./routes/api/books'));
-app.use('/api/typr',  require('./routes/api/typr'));
+app.use('/typr',  require('./routes/typr'));
 
 app.use('/', require('./routes/index'));
-
 
 //leave here
 app.listen(app.get('port'), function() {

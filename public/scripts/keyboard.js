@@ -1,6 +1,8 @@
 
 window.onload = function(){
 
+  $('.menu').dropit();
+
   $('.title-picker').on('click', function(evt) {
     var id = $(evt.target).data('id');
     console.log('clicked id: ', id)

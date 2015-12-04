@@ -2,27 +2,39 @@
 <html>
 <head>
   <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/scripts/Dropit-1.1.1/dropit.css" type="text/css" />
 </head>
 <body>
   <div id="banner">
-    <div class="menu" style="background-color:rgb(255, 212, 241)">How to use TYPR</div>
-    <div class="menu" style="background-color:rgb(234, 133, 172)" onClick="location.href='books'">Stories</div>
-    <div class="menu" style="background-color:rgb(200, 103, 172)">Stats</div>
-  </div>
-  <div id="typeBox">
-    <div id="textArea"></div>
-    <progress id="progress" value="0" max="1">Progress Bar</progress>
-    <p id="stats">words left</p>
-    <div class="container">
-      <h2>Choose a Story</h2>
-      <ul>
-        <% results.forEach(function(r) { console.log(r.title)%>
-          <li class='title-picker' data-id="<%= r.id %>"><%= r.title %></li>
-          <% }); %>
-        </ul>
-      </div>
+    <ul class="menu" id="book-menu" style="background-color:rgb(149, 168, 255)">
+      <li>
+        <a><p><img id="bookimg" src="/images/openbook.png"/></p></a>
+        <ul>
+          <% results.forEach(function(r) { console.log(r.title)%>
+            <li class='title-picker' data-id="<%= r.id %>"><%= r.title %></li>
+            <% }); %>
+          </ul>
+        </li>
+      </ul>
+      <ul class="menu" id="howto-menu" style="background-color:rgb(109, 200, 147)">
+        <li>
+          <a><p><img src="/images/howto.png"/></p></a>
+          <ul>
+            <li class='title-picker'>Text here</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="menu" id="graph-menu" style="background-color:rgb(200, 103, 172)"><img src="/images/graph.png"/></div>
     </div>
-    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+    <div id="typeBox">
+      <div id="textArea"></div>
+      <progress id="progress" value="0" max="1">Progress Bar</progress>
+      <p id="stats">words left</p>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="/scripts/Dropit-1.1.1/dropit.js"></script>
     <script type="text/javascript" src="/scripts/keyboard.js"></script>
   </body>
   </html>
+
+  <!-- onClick="location.href='books'" -->
