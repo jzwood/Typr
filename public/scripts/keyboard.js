@@ -3,10 +3,26 @@ window.onload = function(){
 
   $('.menu').dropit();
 
+  $('#graph-menu').click(function(){
+    console.log("graph");
+    location.href='stats?'+ cleanForURL(keyData);
+    // $.post("stats/data", {hit: 7,m: 3},
+    // function(data, status){
+    //   console.log("Data: " + data + "\nStatus: " + status);
+    //   //location.href='stats';
+    // });
+
+    // $.get("stats", {'a':'1','b':'4','c':'3'}, function(data, status){
+    //   console.log("Data: " + data + "\nStatus: " + status);
+    //   //location.href='stats';
+    // });
+  });
+
+
   $('.title-picker').on('click', function(evt) {
     var id = $(evt.target).data('id');
     console.log('clicked id: ', id)
-    $.get( "/api/tales/id/" + id, function( data ) {
+    $.get("/api/tales/id/" + id, function( data ) {
       console.log(data);
       var textContent = buffer +  data[0]["text_content"];
       // window.var2 = JSON.parse(data);
@@ -35,6 +51,20 @@ window.onload = function(){
   });
 }
 
+function cleanForURL(data){
+  var list = [];
+  for(var ch in data){
+    list.push(data[ch]);
+  }
+  //return list;
+  var together = '';
+  for(var c=0,leng = list.length; c<leng; c++){
+    together += JSON.stringify(list[c])+',';
+  }
+  // var re = /"/g,
+  //     together = together.replace(re,'');
+  return '['+together.slice(0, - 1)+']';
+}
 
 //does key listening and triggers formatting & updating
 function enableSmartInput(textElement,story,cp,acp,maxchars,kd,mrm){
@@ -43,22 +73,24 @@ function enableSmartInput(textElement,story,cp,acp,maxchars,kd,mrm){
         typeIndex = cp+acp;
     var typedInt = story.charCodeAt(typeIndex),
         typedChar = String.fromCharCode(typedInt);
-    kd[typedChar] = kd[typedChar] || 	{"key":typedChar,"seen":0,"missed":0};//initial char if not seen before
+    if(typedInt !== 32){//we don't care about space bar
+      kd[typedChar] = kd[typedChar] || 	{"k":typedChar,"s":0,"m":0};//initial char if not seen before
+    }
     if(typedInt === code){//checks if typed char is char at cursor position
       cp += 1;
       formatContent(textElement, story, cp, acp, maxchars);
       updateProgress(story, cp, acp);
-      kd[typedChar]["seen"]+=1;
+      if(typedInt !== 32){
+        kd[typedChar]["s"]+=1;
+      }
     }else{
       document.getElementById("white").style.backgroundColor = "gray";
-      if(mrm !== typedChar){//No double-jeopardy for mis-typed chars
-        kd[typedChar]["missed"]+=1;
+      if(mrm !== typedChar && typedInt !== 32){//No double-jeopardy for mis-typed chars
+        kd[typedChar]["m"]+=1;
         mrm = typedChar;
-      }else{
-        //REMOVE THIS !! ELSE
-        console.log(kd,mrm);
       }
     }
+    localStorage.setItem("stats",cleanForURL(kd));
   }
   document.body.onkeyup = function(){
     document.getElementById("white").style.backgroundColor = "rgb(223, 218, 255)";

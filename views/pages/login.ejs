@@ -31,9 +31,8 @@ header{
   font-size: 36pt;
 }
 p{
-  color:black;
-  background-color: gray;
-  border-radius: 2px;
+  color:darkred;
+  background: transparent;
   font-size: 15pt;
 }
 h2{
@@ -56,14 +55,29 @@ button,input{
 </style>
 </head>
 <body>
-  <form id="form" onsubmit="">
+  <div id="form">
     <div class="Centered">
     <br><br>
     <header>TYPR</header>
     <img id='twImg' src="images/typewriter.png"></img><br>
     <input id="name" spellcheck="false" placeholder="Pen Name"/><br><br>
-    <button>Start Typing</button>
+    <button onclick="submit();">Start Typing</button><br><br>
+    <p id="errorMsg"></p>
     </div>
-  </form>
+  </div>
+  <script type="text/javascript">
+    var inputField = document.getElementById('name'),
+        pField = document.getElementById('errorMsg');
+    inputField.onkeypress=function(evnt){
+      pField.style.color = "gray";
+      if (evnt.keyCode === 13){submit();}
+    };
+    inputField.onkeyup=function(evnt){
+      if (evnt.keyCode === 13){pField.style.color = "darkred";}
+    };
+    function submit(){
+      inputField.value.trim().length > 0 ? location.href='typr': pField.textContent = "please enter pen name";
+    }
+  </script>
 </body>
 </html>

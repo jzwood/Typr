@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 app.use('/api/tales', require('./routes/api/tales'));
 app.use('/api/books', require('./routes/api/books'));
 app.use('/typr',  require('./routes/typr'));
-
+app.use('/stats',  require('./routes/stats'));
 app.use('/', require('./routes/index'));
 
 //leave here
