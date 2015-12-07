@@ -44,6 +44,8 @@ window.onload = function(){
   $.get("/api/tales/id/7", function(data){
     var textContent = buffer +  data[0]["text_content"];
     // window.var2 = JSON.parse(data);
+    document.getElementById("progress").value = '0';
+    document.getElementById("stats").textContent = 'words left';
     var stream = document.getElementById("textArea");
     formatContent(stream,textContent,cursorPos,adjustedCursorIndex,maxCharNum);
     enableSmartInput(stream,textContent,cursorPos,adjustedCursorIndex,maxCharNum,keyData,mostRecentMiss);
