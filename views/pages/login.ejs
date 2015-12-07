@@ -76,7 +76,13 @@ button,input{
       if (evnt.keyCode === 13){pField.style.color = "darkred";}
     };
     function submit(){
-      inputField.value.trim().length > 0 ? location.href='typr': pField.textContent = "please enter pen name";
+      inputField.value.trim().length > 0 ? reset() : pField.textContent = "please enter pen name";
+    }
+    function reset(){
+      localStorage.setItem("cursorPos", 0);
+      localStorage.setItem("currentStoryID", "7");
+      localStorage.setItem("stats",undefined);
+      location.href='typr';
     }
   </script>
 </body>
