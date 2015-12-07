@@ -1,11 +1,18 @@
 
 window.onload = function(){
   var storyID =  localStorage.getItem("currentStoryID") || '7';
+  var cursorPos = getCursorPos(),
+  maxCharNum = 50,
+  adjustedCursorIndex = (maxCharNum / 2) - 1,
+  keyData = getStatDataOBJ();
+  mostRecentMiss = '';
+  var buffer = (function(){var buf = '';for(var i=0; i< adjustedCursorIndex; i++){ buf+= ' '; } return buf})();
+
   $('.menu').dropit();
 
   $('#graph-menu').click(function(){
     console.log("graph");
-    location.href='stats';//+ cleanForURL(keyData);
+    location.href='stats';
   });
 
   $('.title-picker').on('click', function(evt) {
@@ -22,14 +29,7 @@ window.onload = function(){
       formatContent(stream,textContent,cp,adjustedCursorIndex,maxCharNum);
       enableSmartInput(stream,textContent,cp,adjustedCursorIndex,maxCharNum,keyData,mostRecentMiss);
     });
-  })
-
-  var cursorPos = localStorage.getItem("cursorPos") || 0,
-  maxCharNum = 50,
-  adjustedCursorIndex = (maxCharNum / 2) - 1,
-  keyData = {};//getStatData();
-  mostRecentMiss = '';
-  var buffer = (function(){var buf = '';for(var i=0; i< adjustedCursorIndex; i++){ buf+= ' '; } return buf})();
+  });
 
   // initialize first story
   $.get("/api/tales/id/" + storyID, function(data){
@@ -105,14 +105,18 @@ function formatContent(elem,story,cp, acp, max){
   }
 }
 
-function getStatData(){
+function getCursorPos(){
+  return localStorage.getItem("cursorPos") ? parseInt(localStorage.getItem("cursorPos")) :  0;
+}
+
+function getStatDataOBJ(){
   if(localStorage.getItem('stats')){
     try{
-      return parseData(JSON.parse(localStorage.getItem('stats')));
+      return JSON.parse(localStorage.getItem('stats'));
     }catch(err){
       console.log(err,"\nattempting alternate parsing...");
       try{
-        return parseData(eval(localStorage.getItem('stats')));
+        return eval(localStorage.getItem('stats'));
       }catch(err2){
         return {};
       }
@@ -120,12 +124,4 @@ function getStatData(){
   }else{
     return {};
   }
-}
-
-function parseData(data){
-  var list = [];
-  for(var ch in data){
-    list.push(data[ch]);
-  }
-  return list;
 }

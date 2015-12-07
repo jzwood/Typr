@@ -119,7 +119,7 @@ h3{
   .attr("height", function(d) { return height - y(d.s); });
 
   var plotNumber = 2;
-  var isData = true;//(dataURL !== "[]");
+  var isData = localStorage.getItem('stats') !== null;
   setTitle(plotNumber,isData);
 
   function transPlot(data, plot,isdata){
@@ -200,8 +200,7 @@ h3{
   }
 
   document.body.onclick = function(){
-
-    transPlot(data,plotNumber, isData );
+    transPlot(data,plotNumber, isData);
     plotNumber = (plotNumber + 1) % 3;
   }
 
@@ -231,11 +230,20 @@ h3{
   }
 
   function getStatData(){
-    try{
-      return parseData(JSON.parse(localStorage.getItem('stats')));
-    }catch(err){
-      console.log(err,"\nattempting alternate parsing...");
-      return parseData(eval(localStorage.getItem('stats')));
+    if(localStorage.getItem('stats')){
+      try{
+        return parseData(JSON.parse(localStorage.getItem('stats')));
+      }catch(err){
+        console.log(err,"\nattempting alternate parsing...");
+        try{
+          return parseData(eval(localStorage.getItem('stats')));
+        }catch(err2){
+          throw err1,err2;
+          return {};
+        }
+      }
+    }else{
+      return [];
     }
   }
 
@@ -246,8 +254,15 @@ h3{
     }
     return list;
   }
+
+  function clearData(){
+    localStorage.removeItem('stats');
+    data = [];
+    isData = false;
+  }
+
   </script>
-  <br><br><a href="typr">back to typing</a><p>clear data</p>
+  <br><br><a href="typr">back to typing</a><p onclick="clearData()">clear data</p>
 
 </body>
 </html>

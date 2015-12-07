@@ -81,7 +81,7 @@ button,input{
     function reset(){
       localStorage.setItem("cursorPos", 0);
       localStorage.setItem("currentStoryID", "7");
-      localStorage.setItem("stats",undefined);
+      localStorage.removeItem("stats");
       location.href='typr';
     }
   </script>
